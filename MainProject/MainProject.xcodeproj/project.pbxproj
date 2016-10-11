@@ -169,7 +169,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "RESOURCE_DIR=${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\nfor file in `ls ${CONFIGURATION_BUILD_DIR}`;\ndo\nif [[ $file == *.framework ]]\nthen\nframework_name=`echo $file | cut -d \".\" -f 1`\nframework_floder=${CONFIGURATION_BUILD_DIR}/${file}\nif ls ${framework_floder}/ >/dev/null 2>&1\nthen\necho \"copy ${framework_name} resource\"\n\nrsync -avr --copy-links --no-relative --include \"*.nib\" --include \"*.car\" --include \"*.png\"  --exclude \"*\"  ${framework_floder}/ ${RESOURCE_DIR}\nfi\nfi\ndone";
+			shellScript = "RESOURCE_DIR=${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\nfor file in `ls ${CONFIGURATION_BUILD_DIR}`;\ndo\nif [[ $file == *.framework ]]\nthen\nframework_name=`echo $file | cut -d \".\" -f 1`\nframework_floder=${CONFIGURATION_BUILD_DIR}/${file}\nif ls ${framework_floder}/ >/dev/null 2>&1\nthen\necho \"copy ${framework_name} resource\"\n\nrsync -avr --copy-links --no-relative  --exclude \"*/\" --exclude \"info.plist\" ${framework_floder}/ ${RESOURCE_DIR}\nfi\nfi\ndone";
 		};
 /* End PBXShellScriptBuildPhase section */
 
